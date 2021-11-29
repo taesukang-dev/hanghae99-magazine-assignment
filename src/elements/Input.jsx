@@ -3,7 +3,7 @@ import Button from './Button'
 import { Text, Grid } from './index'
 
 const Input = (props) => {
-  const { label, placeholder, _onChange, type, multiLine } = props
+  const { label, placeholder, _onChange, type, multiLine, _onKeyUp } = props
 
   if (multiLine) {
     return (
@@ -26,6 +26,7 @@ const Input = (props) => {
           type={type}
           placeholder={placeholder}
           onChange={_onChange}
+          onKeyUp={_onKeyUp}
         ></InputBox>
       </Grid>
     </>
@@ -36,6 +37,7 @@ Input.defaultProps = {
   label: false,
   placeholder: '텍스트를 입력해주세요.',
   _onChange: () => {},
+  _onKeyUp: () => {},
   type: 'text',
 }
 

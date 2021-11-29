@@ -11,9 +11,16 @@ const Button = (props) => {
     bg,
     color,
     circle,
+    disabled,
   } = props
   const styles = { padding, bg, margin, color, width }
-  if (circle) {
+  if (disabled) {
+    return (
+      <DisabledButtonBox {...styles}>
+        {text ? text : children}
+      </DisabledButtonBox>
+    )
+  } else if (circle) {
     return (
       <>
         <CircleButtonBox onClick={_onClick}>
@@ -21,14 +28,15 @@ const Button = (props) => {
         </CircleButtonBox>
       </>
     )
+  } else {
+    return (
+      <>
+        <ButtonBox {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </ButtonBox>
+      </>
+    )
   }
-  return (
-    <>
-      <ButtonBox {...styles} onClick={_onClick}>
-        {text ? text : children}
-      </ButtonBox>
-    </>
-  )
 }
 
 Button.defaultProps = {
@@ -62,6 +70,15 @@ const CircleButtonBox = styled.button`
   position: fixed;
   right: 20px;
   bottom: 20px;
+`
+const DisabledButtonBox = styled.button`
+  cursor: not-allowed;
+  margin: ${(props) => props.margin};
+  width: ${(props) => props.width};
+  height: 100%;
+  padding: ${(props) => props.padding};
+  background-color: black;
+  color: red;
 `
 
 export default Button

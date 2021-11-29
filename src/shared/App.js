@@ -24,7 +24,9 @@ function App() {
         <Route path="/write" exact component={PostWrite} />
         <Route path="/notification" exact component={Notification} />
       </ConnectedRouter>
-      <Button circle>+</Button>
+      <Button circle _onClick={() => history.push('/write')}>
+        +
+      </Button>
     </div>
   )
 }

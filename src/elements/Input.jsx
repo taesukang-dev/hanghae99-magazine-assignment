@@ -56,6 +56,4 @@ const TextareaBox = styled.textarea`
   box-sizing: border-box;
 `
 
-Input.defaultProps = {}
-
 export default Input

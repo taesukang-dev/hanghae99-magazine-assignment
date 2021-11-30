@@ -1,8 +1,11 @@
 import { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { Grid, Text } from '../elements'
+import { imageCreators } from '../redux/modules/image'
 
 const FileUpload = (props) => {
+  const dispatch = useDispatch()
   const [fileName, setFileName] = useState('파일 선택')
   const fileInput = useRef()
 
@@ -12,6 +15,7 @@ const FileUpload = (props) => {
     reader.readAsDataURL(file)
     reader.onloadend = (e) => {
       document.querySelector('#img').src = e.target.result
+      dispatch(imageCreators.setPreview(e.target.result))
     }
     setFileName(fileInput.current.files[0].name)
   }
@@ -33,7 +37,7 @@ const FileUpload = (props) => {
         <Grid margin="40px 0px 40px 0px">
           <Text bold fontSize="28px">
             미리보기
-            <img src="" id="img" alt="" />
+            <img src={props.image_url ? props.image_url : ''} id="img" alt="" />
           </Text>
         </Grid>
       </Grid>

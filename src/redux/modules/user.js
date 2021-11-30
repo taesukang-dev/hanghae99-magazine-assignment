@@ -70,6 +70,25 @@ const signinFB = (id, pwd) => {
   }
 }
 
+const loginCheckFB = () => {
+  return function (dispatch, getState, { history }) {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(
+          setUser({
+            user_name: user.displayName,
+            user_profile: '',
+            id: user.email,
+            uid: user.uid,
+          })
+        )
+      } else {
+        dispatch(signout())
+      }
+    })
+  }
+}
+
 const signoutFB = () => {
   return function (dispatch, getState, { history }) {
     auth.signOut().then(() => {
@@ -100,6 +119,7 @@ const userCreators = {
   signupFB,
   signinFB,
   signoutFB,
+  loginCheckFB,
 }
 
 export { userCreators }

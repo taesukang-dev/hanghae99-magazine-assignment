@@ -6,7 +6,7 @@ import { history } from '../redux/configureStore'
 import { likeCreators } from '../redux/modules/like'
 import { postCreators } from '../redux/modules/post'
 
-const Post = (props) => {
+const RightPost = (props) => {
   const dispatch = useDispatch()
   const user_id = useSelector((state) => state.user.user?.uid)
 
@@ -46,19 +46,19 @@ const Post = (props) => {
           </Grid>
         </Grid>
 
-        <Grid padding="16px">
+        <Grid padding="16px" side_flex>
           <Text>{props.contents}</Text>
-        </Grid>
-        <Grid
-          _onClick={() => {
-            history.push(`/detail/${props.id}`)
-          }}
-        >
-          <Image
-            size="300"
-            src={props.image_url ? props.image_url : ''}
-            rectangle
-          ></Image>
+          <Grid
+            _onClick={() => {
+              history.push(`/detail/${props.id}`)
+            }}
+          >
+            <Image
+              size="300"
+              src={props.image_url ? props.image_url : ''}
+              rectangle
+            ></Image>
+          </Grid>
         </Grid>
 
         <Grid side_flex padding="16px">
@@ -97,4 +97,4 @@ const Post = (props) => {
   )
 }
 
-export default Post
+export default RightPost

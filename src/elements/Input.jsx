@@ -3,7 +3,8 @@ import Button from './Button'
 import { Text, Grid } from './index'
 
 const Input = (props) => {
-  const { label, placeholder, _onChange, type, multiLine, _onKeyUp } = props
+  const { label, placeholder, _onChange, type, multiLine, _onKeyUp, value } =
+    props
 
   if (multiLine) {
     return (
@@ -11,6 +12,7 @@ const Input = (props) => {
         {label && <Text fontSize="14px">{label}</Text>}
         <TextareaBox
           rows="10"
+          value={value}
           placeholder={placeholder}
           onChange={_onChange}
         ></TextareaBox>
@@ -36,6 +38,7 @@ const Input = (props) => {
 Input.defaultProps = {
   label: false,
   placeholder: '텍스트를 입력해주세요.',
+  value: '',
   _onChange: () => {},
   _onKeyUp: () => {},
   type: 'text',

@@ -4,12 +4,16 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import Post from './modules/post'
 import User from './modules/user'
+import Image from './modules/image'
+import Like from './modules/like'
 
 export const history = createBrowserHistory()
 
 const rootReducer = combineReducers({
   post: Post,
   user: User,
+  image: Image,
+  like: Like,
   router: connectRouter(history),
 })
 
